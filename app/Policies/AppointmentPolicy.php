@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\User;
 use App\Models\Appointment;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class AppointmentPolicy
@@ -18,7 +18,11 @@ class AppointmentPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->role_id = 1;
+        if($user->role_id == 2){
+            return false;
+        }else{
+        return true;
+        }
     }
 
     /**
@@ -30,8 +34,11 @@ class AppointmentPolicy
      */
     public function view(User $user, Appointment $appointment)
     {
-        return $user->role_id = 1;
-
+        if($user->role_id == 2){
+            return false;
+        }else{
+            return true;
+            }
     }
 
     /**
@@ -42,7 +49,8 @@ class AppointmentPolicy
      */
     public function create(User $user)
     {
-        return $user->role_id = 1;
+        //
+        return $user->role_id == 1;
 
     }
 
@@ -55,8 +63,8 @@ class AppointmentPolicy
      */
     public function update(User $user, Appointment $appointment)
     {
-        return $user->role_id = 1;
-
+        return $user->role_id == 1;
+        //
     }
 
     /**
@@ -68,95 +76,8 @@ class AppointmentPolicy
      */
     public function delete(User $user, Appointment $appointment)
     {
-        return $user->role_id = 1;
-
-    }
-
-    /**
-     * Determine whether the user can bulk delete.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function deleteAny(User $user)
-    {
-        return $user->role_id = 1;
-
-    }
-
-    /**
-     * Determine whether the user can permanently delete.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Appointment  $appointment
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function forceDelete(User $user, Appointment $appointment)
-    {
-        return $user->role_id = 1;
-
-    }
-
-    /**
-     * Determine whether the user can permanently bulk delete.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function forceDeleteAny(User $user)
-    {
-        return $user->role_id = 1;
-
-    }
-
-    /**
-     * Determine whether the user can restore.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Appointment  $appointment
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function restore(User $user, Appointment $appointment)
-    {
-        return $user->role_id = 1;
-
-    }
-
-    /**
-     * Determine whether the user can bulk restore.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function restoreAny(User $user)
-    {
-        return $user->role_id = 1;
-
-    }
-
-    /**
-     * Determine whether the user can bulk restore.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Appointment  $appointment
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function replicate(User $user, Appointment $appointment)
-    {
-        return $user->role_id = 1;
-
-    }
-
-    /**
-     * Determine whether the user can reorder.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function reorder(User $user)
-    {
-        return $user->role_id = 1;
-
+        return $user->role_id == 1;
+        //
     }
 
 }

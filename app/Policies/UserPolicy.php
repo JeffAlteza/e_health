@@ -18,7 +18,12 @@ class UserPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->role_id = ['1','3','4'];
+        if($user->role_id == 2 || 4){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 
     /**
@@ -29,7 +34,11 @@ class UserPolicy
      */
     public function view(User $user)
     {
-        return $user->role_id = ['1','3','4'];
+        if($user->role_id == 2 || 4){
+            return false;
+        }else{
+            return true;
+        }
     }
 
     /**
@@ -40,7 +49,7 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        return $user->role_id = 1;
+        return $user->role_id == 1;
 
     }
 
@@ -52,7 +61,7 @@ class UserPolicy
      */
     public function update(User $user)
     {
-        return $user->role_id = 1;
+        return $user->role_id == 1;
 
     }
 
@@ -64,7 +73,7 @@ class UserPolicy
      */
     public function delete(User $user)
     {
-        return $user->role_id = 1;
+        return $user->role_id == 1;
 
     }
 
@@ -76,78 +85,9 @@ class UserPolicy
      */
     public function deleteAny(User $user)
     {
-        return $user->role_id = 1;
+        return $user->role_id == 1;
 
     }
 
-    /**
-     * Determine whether the user can permanently delete.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function forceDelete(User $user)
-    {
-        return $user->role_id = 1;
-
-    }
-
-    /**
-     * Determine whether the user can permanently bulk delete.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function forceDeleteAny(User $user)
-    {
-        return $user->role_id = 1;
-
-    }
-
-    /**
-     * Determine whether the user can restore.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function restore(User $user)
-    {
-        return $user->role_id = 1;
-
-    }
-
-    /**
-     * Determine whether the user can bulk restore.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function restoreAny(User $user)
-    {
-        return $user->role_id = 1;
-
-    }
-
-    /**
-     * Determine whether the user can bulk restore.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function replicate(User $user)
-    {
-        return $user->role_id = 1;
-
-    }
-
-    /**
-     * Determine whether the user can reorder.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function reorder(User $user)
-    {
-        return $user->role_id = 1;
-    }
+    
 }

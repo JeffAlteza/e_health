@@ -9,4 +9,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateDoctorSchedule extends CreateRecord
 {
     protected static string $resource = DoctorScheduleResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }
