@@ -18,9 +18,15 @@ class UserPolicy
      */
     public function viewAny(User $user)
     {
-        if($user->role_id == 1 || 3){
-            return true;
-        }
+        // if($user->role_id == 1 || 2){
+        //     return true;
+        // }
+
+        // elseif($user->role_id == 3 || 4){
+        //     return false;
+        // }
+
+        return $user->role_id == 1;
     }
 
     /**
@@ -31,9 +37,15 @@ class UserPolicy
      */
     public function view(User $user)
     {
-        if($user->role_id == 1 || 3){
-            return true;
-        }
+        // if($user->role_id == 1 || 2){
+        //     return true;
+        // }
+
+        // elseif($user->role_id == 3 || 4){
+        //     return false;
+        // }
+        return $user->role_id == 1;
+
     }
 
     /**

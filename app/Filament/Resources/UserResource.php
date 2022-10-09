@@ -59,7 +59,7 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('roles.name')->sortable()->searchable()->label('Roles'),
+                TextColumn::make('role.name')->sortable()->searchable()->label('Roles'),
                 TextColumn::make('name')->sortable()->searchable(),
                 TextColumn::make('email')->sortable()->searchable(),
                 TextColumn::make('created_at')

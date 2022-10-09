@@ -50,7 +50,8 @@ class AppointmentPolicy
     public function create(User $user)
     {
         //
-        return $user->role_id == 1 || 2;
+        // return $user->role_id == 1 || 2;
+        return false;
 
     }
 

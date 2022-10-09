@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class DoctorSchedule extends Model
 {
@@ -15,5 +16,11 @@ class DoctorSchedule extends Model
         'date',
         'time_start',
         'time_end',
+        'doctor_id'
     ];
+
+    public function doctor():BelongsTo
+    {
+        return $this->BelongsTo(related:User::class);
+    }
 }

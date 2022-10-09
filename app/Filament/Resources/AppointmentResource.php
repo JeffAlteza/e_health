@@ -5,8 +5,11 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\AppointmentResource\Pages;
 use App\Filament\Resources\AppointmentResource\RelationManagers;
 use App\Models\Appointment;
+use App\Models\User;
 use Filament\Forms;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
@@ -31,38 +34,51 @@ class AppointmentResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                Select::make('doctor.id')
+                ->options(User::all()->where('role_id', '3')->pluck('name', 'id'))
+                ->label('Doctor Name'),
+
+                TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('gender')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\DatePicker::make('birthday')
+                Select::make('gender')
+                    ->options([
+                        'Male' => 'Male',
+                        'Female' => 'Female',
+                        'Other' => 'Other',
+                    ])->required(),
+                DatePicker::make('birthday')
                     ->required(),
-                Forms\Components\TextInput::make('phone_number')
+                TextInput::make('phone_number')
                     ->tel()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('category')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('specification')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\DatePicker::make('date')
+                Select::make('category')
+                    ->options([
+                        'Dental' => 'Dental',
+                        'Check Up' => 'Check Up',
+                        'Medical' => 'Medical',
+                        'Other' => 'Other',
+                    ])->required(),
+                Select::make('specification')
+                    ->options([
+                        'Child' => 'Child',
+                        'Young' => 'Young',
+                        'Teen' => 'Teen',
+                        'Adult' => 'Adult',
+                        'Senior' => 'Senior',
+                        'Other' => 'Other',
+                    ])->required(),
+                DatePicker::make('date')
+                    ->label('Appointment Date')
                     ->required(),
                 Select::make('status')
                     ->options([
                         'cancelled' => 'Cancelled',
                         'pending' => 'Pending',
                         'success' => 'Success',
-                             ])->required(),
-                Select::make('doctor_id')
-                    ->options([
-                    'cancelled' => 'Cancelled',
-                            ])
-                            ->required()
-                            ->label('Doctor'),
+                             ])
+                    ->required(),
             ]);
     }
 

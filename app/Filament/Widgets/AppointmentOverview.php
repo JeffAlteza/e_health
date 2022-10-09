@@ -15,7 +15,8 @@ class AppointmentOverview extends BaseWidget
         $dateWeek = Carbon::now()->subDays(7);
         return [
                 Card::make('Appointment this Week', Appointment::where('date', '>', $dateWeek)->count()),
-                Card::make($date, Appointment::where('date','=', $date)->count()),
+                Card::make('Appointment this Week', Appointment::where('date','=', $date)->count()),
+                Card::make('Pending', Appointment::where('status','=', 'pending')->count()),
         ];
     }
 }

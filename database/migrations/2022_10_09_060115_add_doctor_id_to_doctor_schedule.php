@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('role_id')->default(4)->after('password')->constrained('roles')->onDelete('cascade');
+        Schema::table('doctor_schedules', function (Blueprint $table) {
+            $table->foreignId('doctor_id')->constrained('users')->onDelete('cascade');
         });
         Schema::enableForeignKeyConstraints();
 
@@ -27,7 +27,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('doctor_schedules', function (Blueprint $table) {
             //
         });
     }

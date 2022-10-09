@@ -52,7 +52,7 @@ class User extends Authenticatable implements MustVerifyEmail
     //     return $this->hasMany(Roles::class);
     // }
 
-    public function roles():BelongsTo
+    public function role():BelongsTo
     {
         return $this->belongsTo(Roles::class);
     }
@@ -60,5 +60,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function appointments()
     {
         return $this->hasMany(Appointment::class);
+    }
+
+    public function doctorschedule()
+    {
+        return $this->hasMany(DoctorSchedule::class);
     }
 }

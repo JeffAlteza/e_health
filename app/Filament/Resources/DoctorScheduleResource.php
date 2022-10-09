@@ -5,11 +5,16 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\DoctorScheduleResource\Pages;
 use App\Filament\Resources\DoctorScheduleResource\RelationManagers;
 use App\Models\DoctorSchedule;
+use App\Models\User;
 use Filament\Forms;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -27,17 +32,26 @@ class DoctorScheduleResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('category')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\DatePicker::make('date')
+                Select::make('doctor_id')
+                ->options(User::all()->where('role_id', '3')->pluck('name','id'))
+                ->label('Doctor Name')
+                ->required(),
+
+                Select::make('category')    
+                    ->options([
+                        'Dental' => 'Dental',
+                        'Check Up' => 'Check Up',
+                        'Medical' => 'Medical',
+                        'Other' => 'Other',
+                    ])->required(),
+
+                DatePicker::make('date')
                     ->required(),
-                Forms\Components\TextInput::make('time_start')
+
+                TextInput::make('time_start')
                     ->required(),
-                Forms\Components\TextInput::make('time_end')
+
+                TextInput::make('time_end')
                     ->required(),
             ]);
     }
@@ -46,12 +60,11 @@ class DoctorScheduleResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('category'),
-                Tables\Columns\TextColumn::make('date')
-                    ->date(),
-                Tables\Columns\TextColumn::make('time_start'),
-                Tables\Columns\TextColumn::make('time_end'),
+                TextColumn::make('doctor.name'),
+                TextColumn::make('category'),
+                TextColumn::make('date')->date(),
+                TextColumn::make('time_start'),
+                TextColumn::make('time_end'),
                 
             ])
             ->filters([

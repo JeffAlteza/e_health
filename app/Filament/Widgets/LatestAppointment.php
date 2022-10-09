@@ -3,6 +3,7 @@
 namespace App\Filament\Widgets;
 
 use App\Models\Appointment;
+use Carbon\Carbon;
 use Closure;
 use Filament\Tables;
 use Filament\Tables\Columns\BadgeColumn;
@@ -16,17 +17,19 @@ class LatestAppointment extends BaseWidget
 
     protected function getTableQuery(): Builder
     {
-        return Appointment::where('date', '>', now()); 
+        $dateWeek = Carbon::now()->subDays(7);
+        return Appointment::where('date', '>', $dateWeek); 
     }
 
     protected function getTableColumns(): array
     {
         return [
-            TextColumn::make('date')->label('Date'),
+            TextColumn::make('date')->label('Appointment Date'),
             TextColumn::make('name')->sortable()->searchable(),
-            TextColumn::make('gender'),
+            // TextColumn::make('gender'),
             TextColumn::make('category')->sortable()->searchable(),
-            TextColumn::make('specification'),
+            // TextColumn::make('specification'),
+            TextColumn::make('doctor.name')->label('Doctor'),
             BadgeColumn::make('status')
                     ->colors([
                         'danger' => 'cancelled',

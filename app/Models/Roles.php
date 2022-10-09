@@ -16,9 +16,9 @@ class Roles extends Model
         'name',
     ];
 
-    // public function user():BelongsToMany
+    // public function user():BelongsTo
     // {
-    //     return $this->belongsToMany(User::class);
+    //     return $this->belongsTo(User::class);
     // }
 
     public function user()

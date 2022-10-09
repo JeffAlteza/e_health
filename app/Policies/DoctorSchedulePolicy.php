@@ -41,7 +41,7 @@ class DoctorSchedulePolicy
      */
     public function create(User $user)
     {
-        return $user->role_id == 1 || 4;
+        return $user->role_id != 4;
 
     }
 
@@ -54,7 +54,7 @@ class DoctorSchedulePolicy
      */
     public function update(User $user, DoctorSchedule $doctorSchedule)
     {
-        return $user->role_id == 1 || 4;
+        return $user->role_id != 4;
 
     }
 
@@ -67,7 +67,7 @@ class DoctorSchedulePolicy
      */
     public function delete(User $user, DoctorSchedule $doctorSchedule)
     {
-        return $user->role_id == 1 || 4;
+        return $user->role_id != 4;
 
     }
 
@@ -79,7 +79,7 @@ class DoctorSchedulePolicy
      */
     public function deleteAny(User $user)
     {
-        return $user->role_id == 1;
+        return $user->role_id != 4;
 
     }
 
@@ -92,7 +92,7 @@ class DoctorSchedulePolicy
      */
     public function forceDelete(User $user, DoctorSchedule $doctorSchedule)
     {
-        return $user->role_id == 1;
+        return $user->role_id != 4;
 
     }
 
@@ -104,7 +104,7 @@ class DoctorSchedulePolicy
      */
     public function forceDeleteAny(User $user)
     {
-        return $user->role_id == 1;
+        return $user->role_id != 4;
     }
 
     /**
@@ -116,7 +116,7 @@ class DoctorSchedulePolicy
      */
     public function restore(User $user, DoctorSchedule $doctorSchedule)
     {
-        return $user->role_id == 1;
+        return $user->role_id != 4;
 
     }
 
@@ -128,7 +128,7 @@ class DoctorSchedulePolicy
      */
     public function restoreAny(User $user)
     {
-        return $user->role_id == 1;
+        return $user->role_id != 4;
 
     }
 
@@ -141,7 +141,7 @@ class DoctorSchedulePolicy
      */
     public function replicate(User $user, DoctorSchedule $doctorSchedule)
     {
-        return $user->role_id == 1;
+        return $user->role_id != 4;
 
     }
 
@@ -153,7 +153,7 @@ class DoctorSchedulePolicy
      */
     public function reorder(User $user)
     {
-        return $user->role_id == 1;
+        return $user->role_id != 4;
     }
 
 }
