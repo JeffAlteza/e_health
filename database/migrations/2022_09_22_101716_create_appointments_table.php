@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
-            $table->integer('patient_id');
             $table->string('name');
             $table->string('gender');
             $table->date('birthday');
@@ -26,6 +25,7 @@ return new class extends Migration
             $table->string('status');
             $table->timestamps();
         });
+
     }
 
     /**

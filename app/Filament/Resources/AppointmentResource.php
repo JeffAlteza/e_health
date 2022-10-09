@@ -20,17 +20,17 @@ class AppointmentResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-clipboard';
 
-    // protected static ?string $navigationGroup = "Appointments";
+    protected static ?string $navigationGroup = "Manage";
 
     protected static ?string $recordTitleAttribute ='name'; 
+
+    protected static ?int $navigationSort = 1;
 
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('patient_id')
-                    ->required(),
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
@@ -57,6 +57,12 @@ class AppointmentResource extends Resource
                         'pending' => 'Pending',
                         'success' => 'Success',
                              ])->required(),
+                Select::make('doctor_id')
+                    ->options([
+                    'cancelled' => 'Cancelled',
+                            ])
+                            ->required()
+                            ->label('Doctor'),
             ]);
     }
 
@@ -64,11 +70,12 @@ class AppointmentResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('patient_id')->sortable()->searchable()->toggleable(),
+                Tables\Columns\TextColumn::make('user.id')->sortable()->searchable()->toggleable(),
                 Tables\Columns\TextColumn::make('name')->sortable()->searchable()->toggleable(),
                 Tables\Columns\TextColumn::make('gender')->toggleable(),
                 Tables\Columns\TextColumn::make('category')->toggleable(),
                 Tables\Columns\TextColumn::make('specification')->toggleable(),
+                Tables\Columns\TextColumn::make('doctor.name')->sortable()->searchable()->toggleable(),
                 Tables\Columns\TextColumn::make('date')
                     ->date(),
                 Tables\Columns\BadgeColumn::make('status')

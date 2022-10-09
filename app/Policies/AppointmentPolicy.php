@@ -18,7 +18,7 @@ class AppointmentPolicy
      */
     public function viewAny(User $user)
     {
-        if($user->role_id == 2){
+        if($user->role_id == 4){
             return false;
         }else{
         return true;
@@ -34,7 +34,7 @@ class AppointmentPolicy
      */
     public function view(User $user, Appointment $appointment)
     {
-        if($user->role_id == 2){
+        if($user->role_id == 4){
             return false;
         }else{
             return true;
@@ -50,7 +50,7 @@ class AppointmentPolicy
     public function create(User $user)
     {
         //
-        return $user->role_id == 1;
+        return $user->role_id == 1 || 2;
 
     }
 
@@ -63,7 +63,7 @@ class AppointmentPolicy
      */
     public function update(User $user, Appointment $appointment)
     {
-        return $user->role_id == 1;
+        return $user->role_id == 1 || 2;
         //
     }
 
@@ -76,7 +76,7 @@ class AppointmentPolicy
      */
     public function delete(User $user, Appointment $appointment)
     {
-        return $user->role_id == 1;
+        return $user->role_id == 1 || 2;
         //
     }
 

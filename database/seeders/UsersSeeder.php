@@ -29,12 +29,12 @@ class UsersSeeder extends Seeder
         User::factory()->create([
             'name' => 'Doctor',
             'email' => 'doctor@gmail.com',
-            'role_id'=>'2',
+            'role_id'=>'3',
         ]);
         User::factory()->create([
             'name' => 'Patient',
             'email' => 'patient@gmail.com',
-            'role_id'=>'2',
+            'role_id'=>'4',
         ]);
     }
 }

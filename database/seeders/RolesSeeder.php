@@ -20,13 +20,13 @@ class RolesSeeder extends Seeder
             'name' => 'Administrator'
         ]);
         Roles::factory()->create([
-            'name' => 'Patient',
-        ]);
-        Roles::factory()->create([
             'name' => 'Nurse',
         ]);
         Roles::factory()->create([
             'name' => 'Doctor',
+        ]);
+        Roles::factory()->create([
+            'name' => 'Patient',
         ]);
     }
 }

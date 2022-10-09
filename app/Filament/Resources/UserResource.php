@@ -26,11 +26,11 @@ class UserResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
 
-    // protected static ?string $navigationGroup = "Management";
+    protected static ?string $navigationGroup = "Manage";
 
     protected static ?string $recordTitleAttribute ='name'; 
 
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 3;
 
 
     public static function form(Form $form): Form
@@ -59,7 +59,7 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('role_id')->sortable()->searchable()->label('Roles')->hidden(),
+                TextColumn::make('roles.name')->sortable()->searchable()->label('Roles'),
                 TextColumn::make('name')->sortable()->searchable(),
                 TextColumn::make('email')->sortable()->searchable(),
                 TextColumn::make('created_at')
